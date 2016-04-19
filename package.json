@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "karma start --single-run --browsers PhantomJS; gulp coveralls",
-    "build": "browserify -s ngInputCurrency -u angular -t browserify-shim ./src/ng-input-currency.js > ./dist/ng-input-currency.js"
+    "build": "browserify -s ngInputCurrency -u angular -t browserify-shim ./src/ng-input-currency.js > ./dist/ng-input-currency.js",
+    "postpublish": "git push --follow-tags"
   },
   "repository": {
     "type": "git",
