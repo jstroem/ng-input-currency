@@ -135,6 +135,12 @@ describe ('ngInputCurrency', function () {
         expect(util.toFloat(currencyFilter(12.23))).toBe(12.23);
         expect(util.toFloat(currencyFilter(1))).toBe(1.00);
       });
+
+      It('should be able to take a number as well', function(){
+        expect(util.toFloat(9999)).toBe(9999.00);
+        expect(util.toFloat(12.23)).toBe(12.23);
+        expect(util.toFloat(1)).toBe(1.00);
+      });
     });
 
     describe('.isValid', function(){
