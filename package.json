@@ -1,0 +1,48 @@
+{
+  "name": "ng-input-currency",
+  "version": "0.1.0",
+  "description": "input formatter as currency with Angular",
+  "main": "dist/ng-input-currency.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "karma start --single-run --browsers PhantomJS; gulp coveralls",
+    "pretest": "npm install",
+    "prepublish": "npm run build-browserify",
+    "build-browserify": "browserify -s ngInputCurrency -u angular -t browserify-shim ./src/ng-input-currency.js > ./dist/ng-input-currency.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jstroem/ng-input-currency.git"
+  },
+  "keywords": [
+    "angular",
+    "currency",
+    "input",
+    "format"
+  ],
+  "author": "Jesper Lindstrøm Nielsen",
+  "bugs": {
+    "url": "https://github.com/jstroem/ng-input-currency/issues"
+  },
+  "homepage": "https://github.com/jstroem/ng-input-currency",
+  "devDependencies": {
+    "angular": "^1.5.5",
+    "angular-i18n": "^1.5.5",
+    "angular-mock": "^1.0.0",
+    "bower": "^1.5.3",
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.4",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.10",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-coverage": "^0.5.2",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.7"
+  },
+  "browserify-shim": {
+    "angular": "global:angular"
+  }
+}
