@@ -7,8 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "karma start --single-run --browsers PhantomJS; gulp coveralls",
-    "build": "browserify -s ngInputCurrency -u angular -t browserify-shim ./src/ng-input-currency.js > ./dist/ng-input-currency.js",
+    "test": "karma start --single-run --browsers PhantomJS",
     "postpublish": "git push --follow-tags"
   },
   "repository": {
@@ -34,6 +33,7 @@
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
     "gulp-coveralls": "^0.1.4",
+    "gulp-shell": "^0.5.2",
     "gulp-watch": "^4.3.5",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.10",
