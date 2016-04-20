@@ -2,8 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jstroem/ng-input-currency.svg?branch=master)](https://travis-ci.org/jstroem/ng-input-currency)
 [![Coverage Status](https://coveralls.io/repos/github/jstroem/ng-input-currency/badge.svg?branch=master)](https://coveralls.io/github/jstroem/ng-input-currency?branch=master)
-![][bower]
-[![Build Status](https://travis-ci.org/jstroem/ng-input-currency.svg?branch=master)](https://travis-ci.org/jstroem/ng-input-currency)
+[]![bower]
 [![npm]](https://www.npmjs.com/package/ng-input-currency)
 
 [build]: https://img.shields.io/travis/project/jstroem/ng-input-currency.svg?branch=master&style=flat-square

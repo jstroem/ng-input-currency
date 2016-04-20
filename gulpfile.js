@@ -48,8 +48,8 @@ gulp.task('watch:test', function(done){
 });
 
 gulp.task('watch:build', function() {
-  return watch(conf.js, function(){
-    gulp.start('build');
+  watch(conf.js, function(){
+    gulp.start('build:src');
   });
 })
 

@@ -2,7 +2,7 @@ angular.module('test', []);
 
 describe ('ngInputCurrency', function () {
 
-  var element, scope, util, currencyFilter;
+  var element, scope, util, currencyFilter, locale;
 
   beforeEach(function() {
     jasmine.clock().install();
@@ -10,8 +10,9 @@ describe ('ngInputCurrency', function () {
     module('test');
     module('ngInputCurrency');
 
-    inject(function ($compile, $rootScope, ngInputCurrencyService, $filter) {
+    inject(function ($compile, $rootScope, ngInputCurrencyService, $filter, $locale) {
       // vanilla
+      locale = $locale;
       scope = $rootScope.$new(true);
       util = ngInputCurrencyService;
       currencyFilter = $filter('currency');
@@ -33,15 +34,11 @@ describe ('ngInputCurrency', function () {
   }
 
   var focusElement = function(element) {
-    jasmine.clock().tick(20);
     element.triggerHandler('focus');
-    jasmine.clock().tick(20);
   }
 
   var blurElement = function(element) {
-    jasmine.clock().tick(20);
     element.triggerHandler('blur');
-    jasmine.clock().tick(10);
   }
 
   describe('ngInputCurrency', function () {
@@ -116,8 +113,8 @@ describe ('ngInputCurrency', function () {
       expect(element.val()).toEqual('foo');
       expect(scope.value).toBe(123.50);
       blurElement(element);
-      expect(scope.value).toBeNaN();
-      expect(element.val()).toBe(currencyFilter(scope.value));
+      expect(scope.value).toBeUndefined();
+      expect(element.val()).toBe('foo');
     })
   });
 
@@ -150,8 +147,32 @@ describe ('ngInputCurrency', function () {
         expect(util.isValid(0)).toBe(true);
         expect(util.isValid(0.99)).toBe(true);
         expect(util.isValid(1234)).toBe(true);
+        expect(util.isValid(NaN)).toBe(false);
       });
     });
+
+    describe('.preformatValue', function(){
+      it('should change the GROUP_SEP to a . if the GROUP_SEP only exists one place and DECIMAL_SEP does not exists', function(){
+        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.GROUP_SEP + '45')).toBe('123.45');
+        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.GROUP_SEP + '456'+locale.NUMBER_FORMATS.GROUP_SEP+'789')).toBe('123' + locale.NUMBER_FORMATS.GROUP_SEP + '456'+locale.NUMBER_FORMATS.GROUP_SEP+'789');
+        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.GROUP_SEP + '456'+locale.NUMBER_FORMATS.DECIMAL_SEP+'789')).toBe('123' + locale.NUMBER_FORMATS.GROUP_SEP + '456'+locale.NUMBER_FORMATS.DECIMAL_SEP+'789');
+      });
+
+      it('should change the DECIMAL_SEP to a . if the DECIMAL_SEP only exists one place and GROUP_SEP does not exists', function(){
+        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.DECIMAL_SEP + '45')).toBe('123.45');
+        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.DECIMAL_SEP + '456'+locale.NUMBER_FORMATS.DECIMAL_SEP+'789')).toBe('123' + locale.NUMBER_FORMATS.DECIMAL_SEP + '456'+locale.NUMBER_FORMATS.DECIMAL_SEP+'789');
+        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.DECIMAL_SEP + '456'+locale.NUMBER_FORMATS.GROUP_SEP+'789')).toBe('123' + locale.NUMBER_FORMATS.DECIMAL_SEP + '456'+locale.NUMBER_FORMATS.GROUP_SEP+'789');
+      });
+
+      it('should return the same thing back on anything other than a string', function(){
+        expect(util.preformatValue(undefined)).toBe(undefined);
+        expect(util.preformatValue(null)).toBe(null);
+        expect(util.preformatValue(false)).toBe(false);
+        expect(util.preformatValue(123)).toBe(123);
+        expect(util.preformatValue([])).toEqual([]);
+        expect(util.preformatValue({})).toEqual({});
+      });
+    })
 
     describe('.stringToRegExp', function(){
       it('should be able to convert a given string to e regular expression safe string', function(){

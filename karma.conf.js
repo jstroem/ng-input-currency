@@ -10,7 +10,7 @@ module.exports = function (config) {
     files: [
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      //'node_modules/angular-i18n/angular-locale_da-dk.js', //Test with custom setup
+      'node_modules/angular-i18n/angular-locale_da-dk.js', //Test with custom setup
       'dist/ng-input-currency.js',
       'test/ng-input-currency.js'
     ],
