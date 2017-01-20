@@ -11,7 +11,7 @@ angular.module('ngInputCurrency').service('ngInputCurrencyService', ['$locale', 
     str = str
       .replace(new RegExp(this.stringToRegExp($locale.NUMBER_FORMATS.GROUP_SEP), 'g'), '')
       .replace(new RegExp(this.stringToRegExp($locale.NUMBER_FORMATS.CURRENCY_SYM), 'g'), '')
-      .replace(new RegExp(this.stringToRegExp($locale.NUMBER_FORMATS.DECIMAL_SEP), 'g'), '.')
+      .replace(new RegExp(this.stringToRegExp($locale.NUMBER_FORMATS.DECIMAL_SEP), 'g'), '.');
 
     return parseFloat(str, 10);
   };
@@ -29,11 +29,11 @@ angular.module('ngInputCurrency').service('ngInputCurrencyService', ['$locale', 
          .replace(/\_/g, '\\_')
          .replace(/\?/g, '\\?')
          .replace(/\-/g, '\\-');
-  }
+  };
 
   this.isValid = function(val) {
     return angular.isNumber(val) && !isNaN(val);
-  }
+  };
 
   this.preformatValue = function(val) {
     if (!angular.isString(val))
@@ -43,14 +43,14 @@ angular.module('ngInputCurrency').service('ngInputCurrencyService', ['$locale', 
         decimalRegex = new RegExp(this.stringToRegExp($locale.NUMBER_FORMATS.DECIMAL_SEP), 'g');
 
     var groupMatch = val.match(groupRegex), decimalMatch = val.match(decimalRegex);
-    if (groupMatch && groupMatch.length == 1 && (!decimalMatch || decimalMatch.length == 0))
+    if (groupMatch && groupMatch.length == 1 && (!decimalMatch || decimalMatch.length === 0))
       return val.replace(groupRegex, '.');
 
-    if (decimalMatch && decimalMatch.length == 1 && (!groupMatch || groupMatch.length == 0))
+    if (decimalMatch && decimalMatch.length == 1 && (!groupMatch || groupMatch.length === 0))
       return val.replace(decimalRegex, '.');
 
     return val;
-  }
+  };
 }]);
 
 angular.module('ngInputCurrency').directive('ngInputCurrency', ['$locale','$filter','ngInputCurrencyService','$timeout', function($locale, $filter, util, $timeout) {
@@ -95,9 +95,9 @@ angular.module('ngInputCurrency').directive('ngInputCurrency', ['$locale','$filt
 
     $ngModel.$validators.currency = function(modelValue) {
       return util.isValid(modelValue);
-    }
+    };
 
-  }
+  };
   return {
     'restrict': 'A',
     'require': 'ngModel',
