@@ -56,10 +56,14 @@ angular.module('ngInputCurrency').service('ngInputCurrencyService', ['$locale', 
 angular.module('ngInputCurrency').directive('ngInputCurrency', ['$locale','$filter','ngInputCurrencyService','$timeout', function($locale, $filter, util, $timeout) {
   var link = function($scope, $element, $attrs, $ngModel){
 
-    $ngModel.$options = {
-      updateOn: 'blur enter',
-      updateOnDefault: false
-    }
+  var opts = {
+    updateOn: 'blur enter',
+    updateOnDefault: false
+  };
+  if ($ngModel.options !== null)
+    opts = $ngModel.$options.createChild(opts);
+
+  $ngModel.$options = opts;
 
     var filter = $filter('currency');
     $ngModel.$formatters.push(function fromModelToView(value) {
