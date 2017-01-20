@@ -60,7 +60,7 @@ angular.module('ngInputCurrency').directive('ngInputCurrency', ['$locale','$filt
     updateOn: 'blur enter',
     updateOnDefault: false
   };
-  if ($ngModel.options !== null)
+  if ($ngModel.$options !== null)
     opts = $ngModel.$options.createChild(opts);
 
   $ngModel.$options = opts;
