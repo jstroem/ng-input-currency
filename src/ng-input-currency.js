@@ -90,6 +90,7 @@ angular.module('ngInputCurrency').directive('ngInputCurrency', ['$locale','$filt
       if (util.isValid($ngModel.$modelValue)) {
         $ngModel.$setViewValue($ngModel.$modelValue);
         $ngModel.$render();
+        this.select();
       }
     });
 
