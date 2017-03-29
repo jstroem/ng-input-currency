@@ -31,7 +31,7 @@ Install via bower or NPM:
 </div>
 
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/format-as-currency/format-as-currency.js"></script>
+<script src="bower_components/ng-input-currency/dist/ng-input-currency.js"></script>
 <script>
   angular
   .module('myModule', ['ngInputCurrency'])
