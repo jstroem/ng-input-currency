@@ -39,6 +39,8 @@ angular.module('ngInputCurrency').service('ngInputCurrencyService', ['$locale', 
     if (!angular.isString(val))
       return val;
 
+    val = val.replace($locale.NUMBER_FORMATS.CURRENCY_SYM, '')
+
     var groupRegex = new RegExp(this.stringToRegExp($locale.NUMBER_FORMATS.GROUP_SEP), 'g'),
         decimalRegex = new RegExp(this.stringToRegExp($locale.NUMBER_FORMATS.DECIMAL_SEP), 'g');
 

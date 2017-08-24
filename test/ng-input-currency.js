@@ -151,8 +151,13 @@ describe ('ngInputCurrency', function () {
       });
     });
 
-    describe('.preformatValue', function(){
-      it('should change the GROUP_SEP to a . if the GROUP_SEP only exists one place and DECIMAL_SEP does not exists', function(){
+    describe('.preformatValue', function () {
+      it('should remove the CURRENCY_SYM if its in the value', function () {
+        expect(util.preformatValue(locale.NUMBER_FORMATS.CURRENCY_SYM + '123' + locale.NUMBER_FORMATS.GROUP_SEP + '45')).toBe('123.45');
+        expect(util.preformatValue('123' + locale.NUMBER_FORMATS.GROUP_SEP + '45' + locale.NUMBER_FORMATS.CURRENCY_SYM)).toBe('123.45');
+      });
+
+      it('should change the GROUP_SEP to a . if the GROUP_SEP only exists one place and DECIMAL_SEP does not exists', function () {
         expect(util.preformatValue('123' + locale.NUMBER_FORMATS.GROUP_SEP + '45')).toBe('123.45');
         expect(util.preformatValue('123' + locale.NUMBER_FORMATS.GROUP_SEP + '456'+locale.NUMBER_FORMATS.GROUP_SEP+'789')).toBe('123' + locale.NUMBER_FORMATS.GROUP_SEP + '456'+locale.NUMBER_FORMATS.GROUP_SEP+'789');
         expect(util.preformatValue('123' + locale.NUMBER_FORMATS.GROUP_SEP + '456'+locale.NUMBER_FORMATS.DECIMAL_SEP+'789')).toBe('123' + locale.NUMBER_FORMATS.GROUP_SEP + '456'+locale.NUMBER_FORMATS.DECIMAL_SEP+'789');
