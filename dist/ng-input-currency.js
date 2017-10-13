@@ -108,4 +108,4 @@ angular.module('ngInputCurrency').directive('ngInputCurrency', ['$locale','$filt
   };
 }]);
 
-},{}]},{},[1])
+},{}]},{},[1]);
