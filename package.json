@@ -1,6 +1,6 @@
 {
   "name": "ng-input-currency",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "input formatter as currency with Angular",
   "main": "dist/ng-input-currency.min.js",
   "directories": {
