@@ -2,7 +2,7 @@
   "name": "ng-input-currency",
   "version": "0.9.8",
   "description": "input formatter as currency with Angular",
-  "main": "dist/ng-input-currency.js",
+  "main": "dist/ng-input-currency.min.js",
   "directories": {
     "test": "test"
   },
@@ -30,10 +30,14 @@
     "angular-i18n": "^1.6.4",
     "angular-mocks": "^1.6.4",
     "bower": "^1.5.2",
+    "browserify-global-shim": "^1.0.3",
     "gulp": "^3.9.0",
-    "gulp-browserify": "^0.5.1",
     "gulp-coveralls": "^0.1.4",
+    "gulp-rename": "^1.2.2",
     "gulp-shell": "^0.5.2",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.5",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.10",
@@ -42,9 +46,11 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^1.0.0",
     "phantomjs-prebuilt": "^2.1.7",
-    "run-sequence": "^1.1.5"
+    "run-sequence": "^1.1.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
-  "browserify-shim": {
-    "angular": "global:angular"
+  "browserify-global-shim": {
+    "angular": "angular"
   }
 }
