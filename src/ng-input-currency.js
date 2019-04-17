@@ -46,7 +46,7 @@ angular.module('ngInputCurrency').service('ngInputCurrencyService', ['$locale', 
 
     var groupMatch = val.match(groupRegex), decimalMatch = val.match(decimalRegex);
     if (groupMatch && groupMatch.length == 1 && (!decimalMatch || decimalMatch.length === 0))
-      return val.replace(groupRegex, '.');
+      return val.replace(groupRegex, '');
 
     if (decimalMatch && decimalMatch.length == 1 && (!groupMatch || groupMatch.length === 0))
       return val.replace(decimalRegex, '.');
